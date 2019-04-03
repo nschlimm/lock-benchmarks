@@ -22,13 +22,8 @@ import org.openjdk.jmh.annotations.Warmup;
 
 import io.github.benas.randombeans.api.EnhancedRandom;
 
-/**
- * Whats the througput on highly concurrent read and write operations with {@link ReentrantLock}?
- * What's the impact on increasing count of highly concurrent reader threads?
- *
- */
 @State(Scope.Benchmark)
-public class Verfification_Benchmark extends LockTestHarness{
+public class ReentrantLock_Verfification_Benchmark extends LockTestHarness{
 
     @State(Scope.Group)
     public static class BenchmarkState {
