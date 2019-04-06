@@ -1,0 +1,206 @@
+Java 8 / 3.4.2019
+
+Predominant Read-Workload
+                                                                                                                                          Mode  Cnt        Score        Error  Units
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Batch.measureThroughput_singleThread                         thrpt    5       18,089 ±      4,239  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Batch.measureThroughput_twoThreads                           thrpt    5       19,206 ±      7,152  ops/s -> w/o idle time a second thread cannot help when using ReentrantLock
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Batch_SmallTasks.measureThroughput_singleThread              thrpt    5   709926,197 ±  33860,045  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Batch_SmallTasks.measureThroughput_twoThreads                thrpt    5   461262,478 ±  18297,798  ops/s ->w/o idle time and with small tasks, lock contention may decrease throughput 
+
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Batch.measureThroughput_singleThread                thrpt    5       19,905 ±      7,071  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Batch.measureThroughput_twoThreads                  thrpt    5       28,198 ±      8,363  ops/s -> w/o idle time a second thread increases throughput when using ReadWriteLock 
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Batch_SmallTasks.measureThroughput_singleThread     thrpt    5   726081,705 ±  69499,925  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Batch_SmallTasks.measureThroughput_twoThreads       thrpt    5   661068,013 ±  83882,055  ops/s -> w/o idle time and with small tasks, ReadWriteLock does decrease throuput with additional thread but less then ReentrantLock
+
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Online.measureThroughput_singleThread                        thrpt    5        9,463 ±      2,856  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Online.measureThroughput_twoThreads                          thrpt    5       15,801 ±      3,512  ops/s -> with idle times a second thread can increase throuput
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Online_SmallTasks.measureThroughput_singleThread             thrpt    5       18,443 ±      7,125  ops/s 
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Online_SmallTasks.measureThroughput_twoThreads               thrpt    5       37,676 ±      6,321  ops/s -> this also applies to small tasks
+
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Online.measureThroughput_singleThread               thrpt    5        9,455 ±      2,805  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Online.measureThroughput_twoThreads                 thrpt    5       16,982 ±      2,077  ops/s -> this applies to ReentrantLock and ReadWriteLock
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Online_SmallTasks.measureThroughput_singleThread    thrpt    5       19,402 ±      4,695  ops/s 
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Online_SmallTasks.measureThroughput_twoThreads      thrpt    5       37,734 ±      5,187  ops/s -> allthough with small tasks ReadWriteLock performs a bitt better then ReentranLock
+
+Predominant Write-Workload
+
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Batch.measureThroughput_singleThread                       thrpt    5       18,601 ±      7,053  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Batch.measureThroughput_twoThreads                         thrpt    5       18,227 ±      2,568  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Batch_SmallTasks.measureThroughput_singleThread            thrpt    5   701858,654 ±   8345,365  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Batch_SmallTasks.measureThroughput_twoThreads              thrpt    5   453011,069 ±  25976,099  ops/s
+
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Batch.measureThroughput_singleThread              thrpt    5       19,079 ±      5,390  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Batch.measureThroughput_twoThreads                thrpt    5       20,205 ±      8,305  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Batch_SmallTasks.measureThroughput_singleThread   thrpt    5   672702,791 ± 178676,455  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Batch_SmallTasks.measureThroughput_twoThreads     thrpt    5   431944,757 ±  14611,570  ops/s -> w/o idle time and with small tasks, ReadWriteLock does decrease throuput with additional thread, equivalent to ReentrantLock
+
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Online.measureThroughput_singleThread                      thrpt    5        9,196 ±      2,486  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Online.measureThroughput_twoThreads                        thrpt    5       15,785 ±      1,895  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Online_SmallTasks.measureThroughput_singleThread           thrpt    5       18,637 ±      4,455  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Online_SmallTasks.measureThroughput_twoThreads             thrpt    5       37,518 ±      9,143  ops/s
+
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Online.measureThroughput_singleThread             thrpt    5        9,258 ±      3,199  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Online.measureThroughput_twoThreads               thrpt    5       15,888 ±      1,940  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Online_SmallTasks.measureThroughput_singleThread  thrpt    5       17,959 ±      5,839  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Online_SmallTasks.measureThroughput_twoThreads    thrpt    5       36,032 ±      3,305  ops/s
+
+Read-Only-Workload
+
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Batch.measureThroughput_singleThread                                        thrpt    5       19,262 ±      6,216  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Batch.measureThroughput_twoThreads                                          thrpt    5       19,284 ±      5,058  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Batch_SmallTasks.measureThroughput_singleThread                             thrpt    5   707249,157 ±  46104,381  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Batch_SmallTasks.measureThroughput_twoThreads                               thrpt    5   462863,569 ±   2955,838  ops/s
+
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Batch.measureThroughput_singleThread                               thrpt    5       19,829 ±      4,371  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Batch.measureThroughput_twoThreads                                 thrpt    5       39,615 ±      7,112  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Batch_SmallTasks.measureThroughput_singleThread                    thrpt    5   656070,687 ±  94629,567  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Batch_SmallTasks.measureThroughput_twoThreads                      thrpt    5  1210358,525 ±  81005,745  ops/s verified -> with read-only workload and no idle time ReadWriteLock can significantly increase throuhput with additional thread
+
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Online.measureThroughput_singleThread                                       thrpt    5        9,221 ±      2,609  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Online.measureThroughput_twoThreads                                         thrpt    5       15,399 ±      3,095  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Online_SmallTasks.measureThroughput_singleThread                            thrpt    5       18,559 ±      3,805  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Online_SmallTasks.measureThroughput_twoThreads                              thrpt    5       37,991 ±      2,406  ops/s
+
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Online.measureThroughput_singleThread                              thrpt    5        9,338 ±      1,858  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Online.measureThroughput_twoThreads                                thrpt    5       19,738 ±      3,817  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Online_SmallTasks.measureThroughput_singleThread                   thrpt    5       17,779 ±      2,814  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Online_SmallTasks.measureThroughput_twoThreads                     thrpt    5       39,088 ±      4,289  ops/s
+
+Batch with small idle times (processing time < idle time)
+
+                                                                                                                        Mode  Cnt    Score    Error  Units
+LockBenchmark_Random_PredominantRead_ReentrantLock_LittleIdleBatch.measureThroughput_singleThread                       thrpt    5   17,477 ±  3,350  ops/s
+LockBenchmark_Random_PredominantRead_ReentrantLock_LittleIdleBatch.measureThroughput_twoThreads                         thrpt    5   19,476 ±  3,998  ops/s
+LockBenchmark_Random_PredominantRead_ReentrantLock_LittleIdleBatch_SmallTasks.measureThroughput_singleThread            thrpt    5  277,237 ± 13,463  ops/s
+LockBenchmark_Random_PredominantRead_ReentrantLock_LittleIdleBatch_SmallTasks.measureThroughput_twoThreads              thrpt    5  569,521 ± 26,086  ops/s
+
+LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_LittleIdleBatch.measureThroughput_singleThread              thrpt    5   17,711 ±  4,434  ops/s
+LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_LittleIdleBatch.measureThroughput_twoThreads                thrpt    5   26,739 ±  6,396  ops/s -> on predominant read workload ReadWriteLock can increase performance with additional thread
+LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_LittleIdleBatch_SmallTasks.measureThroughput_singleThread   thrpt    5  275,960 ± 15,660  ops/s
+LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_LittleIdleBatch_SmallTasks.measureThroughput_twoThreads     thrpt    5  577,912 ± 12,387  ops/s -> no advantage here
+
+LockBenchmark_Random_PredominantWrite_ReentrantLock_LittleIdleBatch.measureThroughput_singleThread                      thrpt    5   18,642 ±  3,913  ops/s
+LockBenchmark_Random_PredominantWrite_ReentrantLock_LittleIdleBatch.measureThroughput_twoThreads                        thrpt    5   18,313 ±  9,074  ops/s
+LockBenchmark_Random_PredominantWrite_ReentrantLock_LittleIdleBatch_SmallTasks.measureThroughput_singleThread           thrpt    5  284,129 ± 15,122  ops/s
+LockBenchmark_Random_PredominantWrite_ReentrantLock_LittleIdleBatch_SmallTasks.measureThroughput_twoThreads             thrpt    5  540,290 ± 17,580  ops/s
+
+LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_LittleIdleBatch.measureThroughput_singleThread             thrpt    5   18,391 ±  4,338  ops/s
+LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_LittleIdleBatch.measureThroughput_twoThreads               thrpt    5   19,208 ±  3,459  ops/s
+LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_LittleIdleBatch_SmallTasks.measureThroughput_singleThread  thrpt    5  274,802 ± 24,339  ops/s
+LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_LittleIdleBatch_SmallTasks.measureThroughput_twoThreads    thrpt    5  540,781 ± 16,151  ops/s
+
+LockBenchmark_Random_ReadOnly_ReentrantLock_LittleIdleBatch.measureThroughput_singleThread                      thrpt    5   16,940 ±  5,276  ops/s
+LockBenchmark_Random_ReadOnly_ReentrantLock_LittleIdleBatch.measureThroughput_twoThreads                        thrpt    5   19,382 ±  4,481  ops/s
+LockBenchmark_Random_ReadOnly_ReentrantLock_LittleIdleBatch_SmallTasks.measureThroughput_singleThread           thrpt    5  274,660 ±  3,708  ops/s
+LockBenchmark_Random_ReadOnly_ReentrantLock_LittleIdleBatch_SmallTasks.measureThroughput_twoThreads             thrpt    5  550,766 ±  9,877  ops/s -> with small idle times and small tasks lock contention is gone and ReentrantLock can double performance as opposed to single thread scenario
+
+LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_LittleIdleBatch.measureThroughput_singleThread             thrpt    5   17,315 ±  4,416  ops/s
+LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_LittleIdleBatch.measureThroughput_twoThreads               thrpt    5   35,145 ±  4,542  ops/s
+LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_LittleIdleBatch_SmallTasks.measureThroughput_singleThread  thrpt    5  273,655 ±  9,332  ops/s
+LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_LittleIdleBatch_SmallTasks.measureThroughput_twoThreads    thrpt    5  544,877 ± 20,389  ops/s -> the advantage that ReadWritreLock had in no idle time small tasks scenario is gone whith only small idle times
+
+Batch with small idle times and small processing times (processing time > idle time)
+
+Benchmark                                                                                                                      Mode  Cnt    Score    Error  Units
+LockBenchmark_Random_PredominantRead_ReentrantLock_LittleIdleBatch_LittleProcessing.measureThroughput_singleThread            thrpt    5  101,644 ±  1,753  ops/s
+LockBenchmark_Random_PredominantRead_ReentrantLock_LittleIdleBatch_LittleProcessing.measureThroughput_twoThreads              thrpt    5  161,625 ±  2,540  ops/s
+LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_LittleIdleBatch_LittleProcessing.measureThroughput_singleThread   thrpt    5  102,692 ±  9,916  ops/s
+LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_LittleIdleBatch_LittleProcessing.measureThroughput_twoThreads     thrpt    5  190,779 ±  5,306  ops/s -> the domain of the ReadWriteLock
+
+LockBenchmark_Random_PredominantWrite_ReentrantLock_LittleIdleBatch_LittleProcessing_.measureThroughput_singleThread          thrpt    5  103,103 ±  8,281  ops/s
+LockBenchmark_Random_PredominantWrite_ReentrantLock_LittleIdleBatch_LittleProcessing_.measureThroughput_twoThreads            thrpt    5  162,053 ±  2,783  ops/s
+LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_LittleIdleBatch_LittleProcessing.measureThroughput_singleThread  thrpt    5  105,690 ± 12,681  ops/s
+LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_LittleIdleBatch_LittleProcessing.measureThroughput_twoThreads    thrpt    5  165,960 ±  4,977  ops/s
+
+LockBenchmark_Random_ReadOnly_ReentrantLock_LittleIdleBatch_LittleProcessing.measureThroughput_singleThread                   thrpt    5  101,671 ±  0,504  ops/s
+LockBenchmark_Random_ReadOnly_ReentrantLock_LittleIdleBatch_LittleProcessing.measureThroughput_twoThreads                     thrpt    5  163,658 ± 10,915  ops/s
+LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_LittleIdleBatch_LittleProcessing.measureThroughput_singleThread          thrpt    5  104,149 ±  6,375  ops/s
+LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_LittleIdleBatch_LittleProcessing.measureThroughput_twoThreads            thrpt    5  207,032 ± 25,608  ops/s -> again ReadWriteLock outperforms ReentrantLock
+
+Java 9 / 4.4.2019
+
+Benchmark                                                                                                                                                                   Mode  Cnt        Score       Error  Units
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantRead_ReentrantLock_LittleIdleBatch.measureThroughput_singleThread                                                  thrpt    5       18,468 ±     4,651  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantRead_ReentrantLock_LittleIdleBatch.measureThroughput_twoThreads                                                    thrpt    5       20,055 ±     6,948  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantRead_ReentrantLock_LittleIdleBatch_SmallTasks.measureThroughput_singleThread                                       thrpt    5      279,475 ±     3,308  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantRead_ReentrantLock_LittleIdleBatch_SmallTasks.measureThroughput_twoThreads                                         thrpt    5      559,622 ±    17,658  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_LittleIdleBatch.measureThroughput_singleThread                                         thrpt    5       16,564 ±     1,740  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_LittleIdleBatch.measureThroughput_twoThreads                                           thrpt    5       28,386 ±     7,068  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_LittleIdleBatch_SmallTasks.measureThroughput_singleThread                              thrpt    5      256,672 ±    19,678  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_LittleIdleBatch_SmallTasks.measureThroughput_twoThreads                                thrpt    5      519,098 ±    38,731  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantWrite_ReentrantLock_LittleIdleBatch.measureThroughput_singleThread                                                 thrpt    5       17,289 ±     4,376  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantWrite_ReentrantLock_LittleIdleBatch.measureThroughput_twoThreads                                                   thrpt    5       18,200 ±    10,502  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantWrite_ReentrantLock_LittleIdleBatch_SmallTasks.measureThroughput_singleThread                                      thrpt    5      282,908 ±    10,242  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantWrite_ReentrantLock_LittleIdleBatch_SmallTasks.measureThroughput_twoThreads                                        thrpt    5      565,538 ±    40,712  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_LittleIdleBatch.measureThroughput_singleThread                                        thrpt    5       18,322 ±     6,012  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_LittleIdleBatch.measureThroughput_twoThreads                                          thrpt    5       20,495 ±     2,864  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_LittleIdleBatch_SmallTasks.measureThroughput_singleThread                             thrpt    5      279,415 ±    14,925  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_LittleIdleBatch_SmallTasks.measureThroughput_twoThreads                               thrpt    5      562,866 ±    29,475  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_ReadOnly_ReentrantLock_LittleIdleBatch.measureThroughput_singleThread                                                         thrpt    5       17,802 ±     2,149  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_ReadOnly_ReentrantLock_LittleIdleBatch.measureThroughput_twoThreads                                                           thrpt    5       18,602 ±     5,249  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_ReadOnly_ReentrantLock_LittleIdleBatch_SmallTasks.measureThroughput_singleThread                                              thrpt    5      285,050 ±    21,292  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_ReadOnly_ReentrantLock_LittleIdleBatch_SmallTasks.measureThroughput_twoThreads                                                thrpt    5      546,364 ±    15,763  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_LittleIdleBatch.measureThroughput_singleThread                                                thrpt    5       17,941 ±     5,928  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_LittleIdleBatch.measureThroughput_twoThreads                                                  thrpt    5       36,433 ±     5,051  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_LittleIdleBatch_SmallTasks.measureThroughput_singleThread                                     thrpt    5      272,470 ±     9,204  ops/s
+o.p.b.l.littleidlebatch.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_LittleIdleBatch_SmallTasks.measureThroughput_twoThreads                                       thrpt    5      542,751 ±     7,551  ops/s
+o.p.b.l.littleidlebatch.litlleprocessingtime.LockBenchmark_Random_PredominantRead_ReentrantLock_LittleIdleBatch_LittleProcessing.measureThroughput_singleThread            thrpt    5      102,784 ±     5,208  ops/s
+o.p.b.l.littleidlebatch.litlleprocessingtime.LockBenchmark_Random_PredominantRead_ReentrantLock_LittleIdleBatch_LittleProcessing.measureThroughput_twoThreads              thrpt    5      168,334 ±     9,661  ops/s
+o.p.b.l.littleidlebatch.litlleprocessingtime.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_LittleIdleBatch_LittleProcessing.measureThroughput_singleThread   thrpt    5      103,773 ±     0,967  ops/s
+o.p.b.l.littleidlebatch.litlleprocessingtime.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_LittleIdleBatch_LittleProcessing.measureThroughput_twoThreads     thrpt    5      192,346 ±     5,278  ops/s
+o.p.b.l.littleidlebatch.litlleprocessingtime.LockBenchmark_Random_PredominantWrite_ReentrantLock_LittleIdleBatch_LittleProcessing_.measureThroughput_singleThread          thrpt    5      103,817 ±     1,264  ops/s
+o.p.b.l.littleidlebatch.litlleprocessingtime.LockBenchmark_Random_PredominantWrite_ReentrantLock_LittleIdleBatch_LittleProcessing_.measureThroughput_twoThreads            thrpt    5      165,651 ±     1,440  ops/s
+o.p.b.l.littleidlebatch.litlleprocessingtime.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_LittleIdleBatch_LittleProcessing.measureThroughput_singleThread  thrpt    5      103,710 ±     3,883  ops/s
+o.p.b.l.littleidlebatch.litlleprocessingtime.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_LittleIdleBatch_LittleProcessing.measureThroughput_twoThreads    thrpt    5      167,870 ±     1,064  ops/s
+o.p.b.l.littleidlebatch.litlleprocessingtime.LockBenchmark_Random_ReadOnly_ReentrantLock_LittleIdleBatch_LittleProcessing.measureThroughput_singleThread                   thrpt    5      103,806 ±     0,873  ops/s
+o.p.b.l.littleidlebatch.litlleprocessingtime.LockBenchmark_Random_ReadOnly_ReentrantLock_LittleIdleBatch_LittleProcessing.measureThroughput_twoThreads                     thrpt    5      165,730 ±     1,238  ops/s
+o.p.b.l.littleidlebatch.litlleprocessingtime.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_LittleIdleBatch_LittleProcessing.measureThroughput_singleThread          thrpt    5       92,578 ±     1,984  ops/s
+o.p.b.l.littleidlebatch.litlleprocessingtime.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_LittleIdleBatch_LittleProcessing.measureThroughput_twoThreads            thrpt    5      186,881 ±     8,469  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Batch.measureThroughput_singleThread                                                           thrpt    5       17,377 ±     5,573  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Batch.measureThroughput_twoThreads                                                             thrpt    5       19,528 ±     4,500  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Batch_SmallTasks.measureThroughput_singleThread                                                thrpt    5   679797,836 ± 28303,658  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Batch_SmallTasks.measureThroughput_twoThreads                                                  thrpt    5   440530,928 ± 19939,992  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Online.measureThroughput_singleThread                                                          thrpt    5        9,364 ±     1,916  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Online.measureThroughput_twoThreads                                                            thrpt    5       15,653 ±     2,967  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Online_SmallTasks.measureThroughput_singleThread                                               thrpt    5       19,487 ±     6,331  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantLock_Online_SmallTasks.measureThroughput_twoThreads                                                 thrpt    5       36,400 ±     5,691  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Batch.measureThroughput_singleThread                                                  thrpt    5       18,650 ±     6,030  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Batch.measureThroughput_twoThreads                                                    thrpt    5       28,448 ±    10,051  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Batch_SmallTasks.measureThroughput_singleThread                                       thrpt    5   628340,674 ± 27447,635  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Batch_SmallTasks.measureThroughput_twoThreads                                         thrpt    5   608635,503 ± 57871,229  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Online.measureThroughput_singleThread                                                 thrpt    5        9,689 ±     2,918  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Online.measureThroughput_twoThreads                                                   thrpt    5       18,175 ±     3,547  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Online_SmallTasks.measureThroughput_singleThread                                      thrpt    5       19,135 ±     2,336  ops/s
+o.p.b.l.predominantreads.LockBenchmark_Random_PredominantRead_ReentrantReadWriteLock_Online_SmallTasks.measureThroughput_twoThreads                                        thrpt    5       37,805 ±     8,340  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Batch.measureThroughput_singleThread                                                         thrpt    5       18,735 ±     5,359  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Batch.measureThroughput_twoThreads                                                           thrpt    5       18,557 ±     5,424  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Batch_SmallTasks.measureThroughput_singleThread                                              thrpt    5   599381,347 ± 26291,132  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Batch_SmallTasks.measureThroughput_twoThreads                                                thrpt    5   403854,143 ± 44005,031  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Online.measureThroughput_singleThread                                                        thrpt    5        9,917 ±     2,439  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Online.measureThroughput_twoThreads                                                          thrpt    5       15,715 ±     3,515  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Online_SmallTasks.measureThroughput_singleThread                                             thrpt    5       19,483 ±     5,637  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantLock_Online_SmallTasks.measureThroughput_twoThreads                                               thrpt    5       38,622 ±     8,723  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Batch.measureThroughput_singleThread                                                thrpt    5       19,004 ±     3,173  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Batch.measureThroughput_twoThreads                                                  thrpt    5       19,391 ±     5,218  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Batch_SmallTasks.measureThroughput_singleThread                                     thrpt    5   633922,669 ± 14185,713  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Batch_SmallTasks.measureThroughput_twoThreads                                       thrpt    5   405842,121 ± 12160,965  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Online.measureThroughput_singleThread                                               thrpt    5       10,061 ±     4,112  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Online.measureThroughput_twoThreads                                                 thrpt    5       16,505 ±     2,383  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Online_SmallTasks.measureThroughput_singleThread                                    thrpt    5       19,102 ±     5,915  ops/s
+o.p.b.l.predominantwrites.LockBenchmark_Random_PredominantWrite_ReentrantReadWriteLock_Online_SmallTasks.measureThroughput_twoThreads                                      thrpt    5       37,972 ±     6,094  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Batch.measureThroughput_singleThread                                                                          thrpt    5       19,285 ±     5,003  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Batch.measureThroughput_twoThreads                                                                            thrpt    5       18,850 ±     3,789  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Batch_SmallTasks.measureThroughput_singleThread                                                               thrpt    5   631198,219 ± 40998,510  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Batch_SmallTasks.measureThroughput_twoThreads                                                                 thrpt    5   434918,538 ± 17871,156  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Online.measureThroughput_singleThread                                                                         thrpt    5        9,369 ±     1,973  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Online.measureThroughput_twoThreads                                                                           thrpt    5       15,302 ±     3,193  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Online_SmallTasks.measureThroughput_singleThread                                                              thrpt    5       17,964 ±     6,351  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantLock_Online_SmallTasks.measureThroughput_twoThreads                                                                thrpt    5       38,348 ±     8,716  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Batch.measureThroughput_singleThread                                                                 thrpt    5       17,877 ±     6,858  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Batch.measureThroughput_twoThreads                                                                   thrpt    5       37,257 ±     5,905  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Batch_SmallTasks.measureThroughput_singleThread                                                      thrpt    5   617844,520 ± 37890,319  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Batch_SmallTasks.measureThroughput_twoThreads                                                        thrpt    5  1098941,275 ± 22436,463  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Online.measureThroughput_singleThread                                                                thrpt    5        9,456 ±     3,072  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Online.measureThroughput_twoThreads                                                                  thrpt    5       18,923 ±     3,249  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Online_SmallTasks.measureThroughput_singleThread                                                     thrpt    5       19,464 ±     4,786  ops/s
+o.p.b.l.readonly.LockBenchmark_Random_ReadOnly_ReentrantReadWriteLock_Online_SmallTasks.measureThroughput_twoThreads                                                       thrpt    5       37,407 ±     5,886  ops/s
